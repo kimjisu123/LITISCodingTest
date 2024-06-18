@@ -1,0 +1,12 @@
+https://dev-cini.tistory.com/47 블로그를 참고하였습니다..
+
+SELECT
+    ID,
+    NAME,
+    LPAD(' ', PARENT_ID) || SYS_CONNECT_BY_PATH(NAME, '/') PATH,
+    PARENT_ID
+FROM TEST
+START WITH PARENT_ID IS NULL
+CONNECT BY PARENT_ID = PRIOR ID
+ORDER SIBLINGS BY PARENT_ID;
+
